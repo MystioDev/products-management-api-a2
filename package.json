@@ -1,0 +1,36 @@
+{
+  "name": "express-drizzle-mysql",
+  "version": "1.0.0",
+  "description": "Production-ready starter template for Express.js REST API with Drizzle ORM and MySQL",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:check": "drizzle-kit check"
+  },
+  "keywords": [
+    "express",
+    "drizzle-orm",
+    "mysql",
+    "mysql2",
+    "rest-api",
+    "template",
+    "starter-kit"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.8",
+    "drizzle-orm": "^0.45.4",
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.11",
+    "nodemon": "^3.1.14"
+  }
+}
