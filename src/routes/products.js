@@ -39,4 +39,42 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const { name, price, inStock } = req.body;
+
+    if (!name) {
+      return res.status(404).json({
+        message: "The 'name' field is required!",
+      });
+    }
+
+    if (!price) {
+      return res.status(404).json({
+        message: "The 'price' field is required!",
+      });
+    }
+
+    if (inStock === undefined) {
+      return res.status(404).json({
+        message: "The 'inStock' field is required!",
+      });
+    }
+
+    await db.insert(products).values({
+      name,
+      price,
+      inStock,
+    });
+
+    return res.status(201).json({
+      message: "Product created successfully!",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message || "Internal server error.",
+    });
+  }
+});
+
 module.exports = router;
