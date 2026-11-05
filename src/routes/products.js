@@ -77,4 +77,38 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  try {
+    const [entry] = await db
+      .select()
+      .from(products)
+      .where(eq(products.id, +req.params.id));
+
+    if (!entry) {
+      return res.status(404).json({
+        message: "Product not found!",
+      });
+    }
+
+    const { name, price, inStock } = req.body;
+
+    await db
+      .update(products)
+      .set({
+        name,
+        price,
+        inStock,
+      })
+      .where(eq(products.id, +req.params.id));
+
+    return res.status(200).json({
+      message: "Product updated successfully!",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message || "Internal server error.",
+    });
+  }
+});
+
 module.exports = router;
